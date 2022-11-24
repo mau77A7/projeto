@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+     
+        <h2>Calculo do ADE</h2>
+          <label for="">Nivel de desempenho AADP</label>
+          <select class="form-control" name="aadp" id="aadp">
+            <option>Superior</option>
+            <option>Alto</option>
+            <option>Intermediario</option>
+            <option>Baixo</option>
+            <option>Inferior</option>
+
+          </select> </BR>
+
+          <label for="">Conceito</label>
+          <select class="form-control" name="con" id="con">
+            <option>A 50</option>
+            <option>B >= 25</option>
+            <option>B 0 ATE 24</option>
+            <option>B -1 ATE -24</option>
+            <option>B -25 ATE -50</option>
+            <option>C</option>
+
+          </select></BR>
+
+          <label for="">TPB</label>
+          <select class="form-control" name="tpb" id="tpb">
+            <option>APTO em todas as Provas</option>
+            <option>APTO em duas Provas</option>
+            <option>APTO em uma prova</option>
+            <option>INAPTO em todas as Provas</option>
+           
+          </select></BR>
+
+          Nº ADI Satisfatorio:<input type="number" class="form-control" name="adi" id="adi"></BR>
+
+          <input type="button" class="btn btn-success" value="Calcular" onclick="calculo()"><br><br>
+
+          <div class="form-group">
+            NOTA AADP: <label id="labelAADP" style="color: blue; font-size: 24px;"></label><br>
+            NOTA CONCEITO: <label id="labelCONCEITO" style="color: blue; font-size: 24px;"></label><br>
+            NOTA TPB: <label id="labelTPB" style="color: blue; font-size: 24px;"></label><br>
+            PERCENTUAL ADE: <label id="labelADE" style="color: blue; font-size: 24px;"></label>
+        </div> <br><br><br>
+        <label style="font-size: 12px">@Cb Mauricio</label> 
+
+       
+    </div>
+
+
+    <script>
+        function calculo() {
+
+            var aadp =  document.getElementById("aadp").value;
+            var conceito =  document.getElementById("con").value;
+            var tpb =  document.getElementById("tpb").value;
+            var adi_quantidade = document.getElementById("adi").value;
+
+            var nota_aadp = 0;
+            var nota_conceito = 0;
+            var nota_tpb = 0;
+            var ade = 0;
+            var percentual_ade;
+
+            switch (aadp) {
+                case "Superior":
+                    nota_aadp = 50;
+                    break;
+                case "Alto":
+                    nota_aadp = 40;
+                    break;
+                case "Intermediario":
+                    nota_aadp = 30;
+                    break;
+                case "Baixo":
+                    nota_aadp = 20;   
+                    break;
+                case "Inferior":
+                    nota_aadp = 10; 
+                    break;    
+            }
+
+            switch (conceito) {
+                case "A 50":
+                    nota_conceito = 30;
+                    break;
+                case "B >= 25":
+                    nota_conceito = 30;
+                    break;
+                case "B 0 ATE 24":
+                    nota_conceito = 25;
+                    break;
+                case "B -1 ATE -24":
+                    nota_conceito = 20;   
+                    break;
+                case "B -25 ATE -50":
+                    nota_conceito = 15; 
+                    break;
+                
+                case "C":
+                    nota_conceito = 0; 
+                    break;
+            }
+            
+            switch (tpb) {
+                case "APTO em todas as Provas":
+                    nota_tpb = 20;
+                    break;
+                case "APTO em duas Provas":
+                    nota_tpb = 15;
+                    break;
+                case "APTO em uma prova":
+                    nota_tpb = 10;
+                    break;
+                case "INAPTO em todas as Provas":
+                    nota_tpb = 0;   
+                    break;
+                
+            } 
+
+
+            if (adi_quantidade >2 && adi_quantidade < 5){
+                percentual_ade = 6;
+            }else if(adi_quantidade >4 && adi_quantidade <10 ){
+                percentual_ade = 10;
+            }else if(adi_quantidade >9 && adi_quantidade <15 ){
+                percentual_ade = 20;
+            }else if(adi_quantidade >14 && adi_quantidade <20 ){
+                percentual_ade = 30;
+            }else if(adi_quantidade >19 && adi_quantidade <25 ){
+                percentual_ade = 40;
+            }else if(adi_quantidade >24 && adi_quantidade <30 ){
+                percentual_ade = 50;
+            }else if(adi_quantidade >29 ){
+                percentual_ade = 60;
+            }else if(adi_quantidade < 3 ){
+                percentual_ade = 0;
+               
+            } 
+
+            
+
+            ade = ((nota_aadp + nota_conceito + nota_tpb) / 100) * percentual_ade
+
+            document.getElementById("labelAADP").innerHTML = nota_aadp;
+            document.getElementById("labelCONCEITO").innerHTML = nota_conceito;
+            document.getElementById("labelTPB").innerHTML = nota_tpb;
+            document.getElementById("labelADE").innerHTML = ade+"%";
+            
+        }
+
+    </script>
+
+</body>
+</html>
