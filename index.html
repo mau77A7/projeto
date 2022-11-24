@@ -44,7 +44,9 @@
 
           Nº ADI Satisfatorio:<input type="number" class="form-control" name="adi" id="adi"></BR>
 
-          <input type="button" class="btn btn-success" value="Calcular" onclick="calculo()"><br><br>
+          <input type="button" class="btn btn-success" value="Calcular" onclick="calculo()">
+          <input type="button" class="btn btn-success" value="Limpar" onclick="limpar()"><br><br>
+          
 
           <div class="form-group">
             NOTA AADP: <label id="labelAADP" style="color: blue; font-size: 24px;"></label><br>
@@ -158,6 +160,12 @@
             document.getElementById("labelADE").innerHTML = ade+"%";
             
         }
+        function limpar() {
+            document.getElementById("labelAADP").innerHTML = "";
+            document.getElementById("labelCONCEITO").innerHTML = "";
+            document.getElementById("labelTPB").innerHTML = "";
+            document.getElementById("labelADE").innerHTML = "";
+          }
 
     </script>
 
